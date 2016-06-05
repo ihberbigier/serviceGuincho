@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:menuitem value="#{msg['menu.home']}" url="/" icon="ui-icon-home" />
+	<p:menuitem value="#{msg['menu.admin']}" url="/admin.xhtml" icon="ui-icon-wrench" rendered="#{sessionMB.user.id == 488}" />
+	<p:menuitem value="#{msg['menu.config']}" url="/config.xhtml" icon="ui-icon-wrench" rendered="#{sessionMB.logged}" />
+	<p:submenu label="#{msg['menu.modulo-inscricao']}" rendered="#{sessionMB.logged}" icon="ui-icon-document">
+		<p:menuitem value="#{msg['menu.aluno']}" url="/mod-inscricoes/aluno-list.xhtml" rendered="#{sessionMB.hasPermission('ALUNO-CONSULTAR')}" />
+		<p:submenu label="Turma">
+			<p:menuitem value="Nova..." action="/mod-inscricoes/turma-form.xhtml?faces-redirect=true" rendered="#{sessionMB.hasPermission('TURMA-NOVO')}" />
+			<p:menuitem value="Lista" url="/mod-inscricoes/turma-list.xhtml" includeViewParams="true" rendered="#{sessionMB.hasPermission('TURMA-CONSULTAR')}" />
+			<!-- 
+			<p:menuitem rendered="#{sessionMB.hasPermission('TURMA-CONSULTAR')}">
+				<h:link value="Lista" outcome="/mod-inscricoes/turma-list.xhtml" />
+			</p:menuitem>
+			 -->
+		</p:submenu>
+		<p:menuitem value="#{msg['menu.inscricao']}" url="/mod-inscricoes/inscricao-list.xhtml" rendered="#{sessionMB.hasPermission('INSCRICAO-CONSULTAR')}" />
+	</p:submenu>
+	<p:submenu label="#{msg['menu.modulo-tabelas']}" rendered="#{sessionMB.logged}" icon="ui-icon-document">
+		<p:menuitem value="#{msg['menu.curso']}" url="/mod-tabelas/curso-list.xhtml" rendered="#{sessionMB.hasPermission('CURSO-CONSULTAR')}" />
+		<p:menuitem value="#{msg['menu.instrutor']}" url="/mod-tabelas/instrutor-list.xhtml" rendered="#{sessionMB.hasPermission('INSTRUTOR-CONSULTAR')}" />
+		<p:menuitem value="#{msg['menu.recurso']}" url="/mod-tabelas/recurso-list.xhtml" rendered="#{sessionMB.hasPermission('RECURSO-CONSULTAR')}" />
+	</p:submenu>
+
+</ui:composition>
