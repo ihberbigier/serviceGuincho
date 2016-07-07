@@ -1,14 +1,5 @@
 <jboss-deployment-structure>
 	<deployment>
-		<dependencies>
-			<module name="procergs.acr.soe" export="true" />
-			<module name="procergs.acr.util" export="true" />
-			<!-- Necessário pelo JavaMelody -->
-			<system export="true">
-				<paths>
-					<path name="com/sun/management" />
-				</paths>
-			</system>
-		</dependencies>
+
 	</deployment>
 </jboss-deployment-structure>
